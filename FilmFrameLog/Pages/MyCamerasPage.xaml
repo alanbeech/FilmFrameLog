@@ -2,8 +2,65 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FilmFrameLog.Pages.MyCamerasPage">
+             xmlns:viewmodel="clr-namespace:FilmFrameLog.ViewModels"
+             x:Class="FilmFrameLog.Pages.MyCamerasPage" Title="My Cameras">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="add" Command="{Binding MyCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Cameras}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyCamerasViewModel}},Path=DeleteCommand}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeView.RightItems>
+                            <SwipeView.LeftItems>
+                                <SwipeItem Text="Use"
+                                           BackgroundColor="Green"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyCamerasViewModel}},Path=UseCommand}"
+                                           CommandParameter="{Binding .}" />
+                                <SwipeItem Text="Copy"
+                                           BackgroundColor="Orange"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyCamerasViewModel}},Path=UseCommand}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeView.LeftItems>
+                            <Frame CornerRadius="0" Padding="0" BorderColor="Azure" >
+                                <StackLayout>
+                                    <Grid ColumnDefinitions="auto,*,*" RowDefinitions="*,*" HorizontalOptions="Fill"
+                                          Padding="5,10,10,10">
+                                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding Icon}"
+                                               WidthRequest="60"
+                                               Margin="0,0,5,0">
+                                        </Image>
+                                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                            <Label FontAttributes="Bold" FontSize="12" Text="{Binding Make}"
+                                                   Margin="0,0,10,0" />
+                                            <Label FontAttributes="Bold" FontSize="12" Text="{Binding Model}" />
+                                            <Label FontAttributes="Bold" FontSize="12" Text=" - " />
+                                            <Label FontAttributes="Bold" FontSize="12" Text="{Binding Format}" />
+                                        </StackLayout>
+                                        <Label Grid.Column="2" Grid.Row="0" FontSize="12" HorizontalTextAlignment="End"
+                                               Text="{Binding FramesUsed}">
+                                        </Label>
+                                        <Label Grid.Column="2" Grid.Row="1" FontSize="12" HorizontalTextAlignment="End"
+                                               VerticalTextAlignment="End" Text="{Binding FilmType}">
+                                        </Label>
+                                    </Grid>
+                                    
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

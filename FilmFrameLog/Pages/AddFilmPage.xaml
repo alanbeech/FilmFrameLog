@@ -2,8 +2,12 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FilmFrameLog.Pages.AddFilmPage">
+             x:Class="FilmFrameLog.Pages.AddFilmPage"
+             Shell.PresentationMode="Animated">
     <ContentPage.Content>
-        
+        <StackLayout>
+            <Entry Text="{Binding Name}" Placeholder="Name"></Entry>
+            <Button Command="{Binding SaveFilmCommand}" Text="Save"></Button>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
