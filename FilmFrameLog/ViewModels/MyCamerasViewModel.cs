@@ -19,7 +19,7 @@ using CommunityToolkit.Mvvm.Input;
 [INotifyPropertyChanged]
 public partial class MyCamerasViewModel
 {
-    FilmFrameLogDatabase database;
+
     
     IFireStoreService firestoreService;
     FilmFrameLogDatabase database;
