@@ -1,9 +1,28 @@
+using Google.Cloud.Firestore;
+
 namespace FilmFrameLog.Models;
 
-public class Monkey
+[FirestoreData]
+public class Camera
 {
-    public string Name { get; set; }
-    public string Location { get; set; }
-    public string Details { get; set; }
+    [FirestoreProperty] 
+    public string Id { get; set; }
+    
+    [FirestoreProperty]
+    public string Make { get; set; }
+    
+    [FirestoreProperty]
+    public string Model { get; set; }
+    
+    [FirestoreProperty]
+    public string Icon { get; set; }
+    
+    [FirestoreProperty]
+    public string Notes { get; set; }
+    
+    [FirestoreProperty]
     public string ImageUrl { get; set; }
+    
+    [FirestoreProperty]
+    public string Format { get; set; }
 }

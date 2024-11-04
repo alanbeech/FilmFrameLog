@@ -3,13 +3,23 @@
     x:Class="FilmFrameLog.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:FilmFrameLog"
+
+    xmlns:pages="clr-namespace:FilmFrameLog.Pages"
     Shell.FlyoutBehavior="Disabled"
-    Title="FilmFrameLog">
+    Title="FilmFrameLog" BackgroundColor="Aquamarine">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <Tab Title="In Use"
+             Icon="home">
+            <ShellContent ContentTemplate="{DataTemplate pages:CamerasInUsePage}" />
+        </Tab>
+        <Tab Title="Cameras"
+             Icon="camera">
+            <ShellContent ContentTemplate="{DataTemplate pages:MyCamerasPage}" />
+        </Tab>
+        <Tab Title="Films"
+             Icon="film">
+            <ShellContent ContentTemplate="{DataTemplate pages:MyFilmStockPage}" />
+        </Tab>
+    </TabBar>
 </Shell>

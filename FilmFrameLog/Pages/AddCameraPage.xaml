@@ -2,13 +2,24 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FilmFrameLog.Pages.CamerasInUsePage" Title="In Use">
+             x:Class="FilmFrameLog.Pages.AddCameraPage" Title="Add To My Cameras">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="add" Command="{Binding MyCommand}"  />
+        <ToolbarItem Text="Close" Command="{Binding CloseCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <CollectionView ItemsSource="{Binding CamerasInUse}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!-- <Label Grid.Row="0" Text="{Binding SelectedCamera.ImageUrl}"></Label> -->
+            <Image Grid.Row="0" Aspect="AspectFill" Source="{Binding SelectedCamera.ImageUrl}"></Image>
+            <Button Grid.Row="1" Text="Add Camera" Command="{Binding AddCameraCommand}" />
+            <SearchBar Grid.Row="2" Placeholder="Search for Camera"></SearchBar>
+            
+            <CollectionView Grid.Row="3" ItemsSource="{Binding AvailableCameras}" SelectionMode="Single" SelectionChangedCommandParameter="{Binding SelectedCamera}" SelectionChangedCommand="{Binding CameraSelectedCommand}" SelectedItem="{Binding SelectedCamera}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
@@ -24,9 +35,6 @@
                                     <Label FontAttributes="Bold" FontSize="12" Text=" - " />
                                     <Label FontAttributes="Bold" FontSize="12" Text="{Binding Format}" />
                                 </StackLayout>
-                                <Label Grid.Column="2" Grid.Row="0" FontSize="12" HorizontalTextAlignment="End"
-                                       Text="{Binding FramesUsed}">
-                                </Label>
                                 <Label Grid.Column="2" Grid.Row="1" FontSize="12" HorizontalTextAlignment="End"
                                        VerticalTextAlignment="End" Text="{Binding FilmType}">
                                 </Label>
@@ -36,6 +44,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
