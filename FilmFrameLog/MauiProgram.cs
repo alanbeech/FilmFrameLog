@@ -1,4 +1,4 @@
-﻿using FilmFrameLog.Data;
+using FilmFrameLog.Data;
 using FilmFrameLog.Interfaces;
 using FilmFrameLog.Pages;
 using FilmFrameLog.Services;
